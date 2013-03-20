@@ -14,7 +14,7 @@ class AllStar
 end
 
 
-records = Record.parse("/path/to/allstars.csv")
+records = AllStar.parse("/path/to/allstars.csv")
 records.each do |record|
   puts ( "first_name[%s] last_name[%s] team[%s]" % [ record.first_name,
             record.last_name, record.team ] )
