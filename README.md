@@ -5,21 +5,17 @@ Inspired by [pauldix/sax-machine](https://github.com/pauldix/sax-machine), this 
 ## Example
 
 ```ruby
-class Records
-  include CSVMachine::Document
-end
-
-class Record
-  include CSVMachine::Row
+class AllStar 
+  include CSVMachine
 
   field :first_name
   field :last_name
-  field :team, index: 4
+  field :team, column: 4
 end
 
 
-records = Records.parse("/path/to/allstars.csv")
-records.rows.each do |record|
+records = Record.parse("/path/to/allstars.csv")
+records.each do |record|
   puts ( "first_name[%s] last_name[%s] team[%s]" % [ record.first_name,
             record.last_name, record.team ] )
 end
