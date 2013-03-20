@@ -1,3 +1,4 @@
+require File.dirname(__FILE__) + '/lib/csv-machine/version'
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
