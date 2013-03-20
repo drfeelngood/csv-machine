@@ -1,3 +1,3 @@
 module CSVMachine
-  Version = VERSION = '1.0.0'
+  Version = VERSION = '0.1.0'
 end
