@@ -5,23 +5,30 @@ Inspired by [pauldix/sax-machine](https://github.com/pauldix/sax-machine), this 
 ## Example
 
 ```ruby
-class AllStar 
+require 'csv-machine'
+
+class AllStar
   include CSVMachine
 
-  field :first_name
   field :last_name
+  field :first_name
   field :team, column: 4
 end
 
+data = <<-CSV
+Durant,Kevin,Small Forward,35,Oklahoma City Thunder
+Bryant,Kobe,Shooting Guard,24,Los Angeles Lakers
+James,LeBron,Power Forward,6,Miami Heat
+CSV
 
-records = AllStar.parse("/path/to/allstars.csv")
-records.each do |record|
-  puts ( "first_name[%s] last_name[%s] team[%s]" % [ record.first_name,
-            record.last_name, record.team ] )
+players = AllStar.parse(data)
+players.each do |player|
+  puts ( "first_name[%s] last_name[%s] team[%s]" % [ player.first_name,
+            player.last_name, player.team ] )
 end
 
 __END__
 first_name[Kevin] last_name[Durant] team[Oklahoma City Thunder]
 first_name[Kobe] last_name[Bryant] team[Los Angeles Lakers]
-first_name[Lebron] last_name[James] team[Miami Heat]
+first_name[LeBron] last_name[James] team[Miami Heat]
 ```

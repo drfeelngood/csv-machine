@@ -22,6 +22,12 @@ module CSVMachine
       @csv_options ||= CSV::DEFAULT_OPTIONS
     end
 
+    # @param [Symbol] name
+    # @param [] value
+    def set_csv_option(name, value)
+      raise "Unknown csv option `#{name}'" unless csv_options.key?(name)
+    end
+
     # @param [Symbol, #to_sym] name
     # @param [Hash] options
     def field(name, options={})
@@ -48,6 +54,10 @@ module CSVMachine
     def create_attribute(name)
       attr_reader name unless method_defined?(name)
       attr_writer name unless method_defined?(:"#{name}=")
+    end
+
+    def parse(data)
+      CSV.new(data, csv_options).collect { |row| from_csv(row) }
     end
 
   end
