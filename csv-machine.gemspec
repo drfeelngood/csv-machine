@@ -8,7 +8,10 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/drfeelngood/csv-machine"
   s.date     = Time.now.strftime('%Y-%m-%d')
 
-  s.files   = Dir["lib/**/*.rb"]
+  s.files    = [ 'LICENSE',
+                 'lib/csv-machine.rb',
+                 'lib/csv-machine/field.rb',
+                 'lib/csv-machine/version.rb' ]
 
   s.description = "A machine for csv parsing"
   s.summary     = "Small library used to transform csv data to Ruby objects"
