@@ -19,13 +19,14 @@ module CSVMachine
     end
 
     def csv_options
-      @csv_options ||= CSV::DEFAULT_OPTIONS
+      @csv_options ||= CSV::DEFAULT_OPTIONS.dup
     end
 
     # @param [Symbol] name
     # @param [] value
     def set_csv_option(name, value)
       raise "Unknown csv option `#{name}'" unless csv_options.key?(name)
+      @csv_options[name] = value
     end
 
     # @param [Symbol, #to_sym] name
