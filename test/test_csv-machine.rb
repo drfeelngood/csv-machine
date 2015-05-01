@@ -42,7 +42,33 @@ CSV
     assert_equal(3, @all_stars.size)
     @all_stars.each do |all_star|
       assert_instance_of(AllStar, all_star)
-    
+
+      assert_respond_to(all_star, :first_name)
+      assert_respond_to(all_star, :last_name)
+      assert_respond_to(all_star, :team)
+    end
+    player = @all_stars.first
+    assert_equal("Kevin", player.first_name)
+    assert_equal("Durant", player.last_name)
+    assert_equal("Oklahoma City Thunder", player.team)
+  end
+
+  def test_parse_with_custom_csv_option
+    data = <<-CSV
+Last name, First name, Position, Number, Team
+Durant,Kevin,Small Forward,35,Oklahoma City Thunder
+Bryant,Kobe,Shooting Guard,24,Los Angeles Lakers
+James,LeBron,Power Forward,6,Miami Heat
+CSV
+    @all_stars = []
+    assert_nothing_raised do
+      AllStar.set_csv_option(:headers, :first_row)
+      @all_stars = AllStar.parse(data)
+    end
+    assert_equal(3, @all_stars.size)
+    @all_stars.each do |all_star|
+      assert_instance_of(AllStar, all_star)
+
       assert_respond_to(all_star, :first_name)
       assert_respond_to(all_star, :last_name)
       assert_respond_to(all_star, :team)
